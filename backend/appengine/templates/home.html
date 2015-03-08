@@ -4,43 +4,170 @@
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
 {% endblock %}
 {% block body %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Tekton</h1>
-                <p>{% trans %}A Full-Stack project for Google App Engine{% endtrans %}</p>
+
+
+    <!---//Facebook button code-->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- ******HEADER****** -->
+    <header id="header" class="header">
+        <div class="container">
+            <h1 class="logo pull-left">
+                <a class="scrollto" href="#promo">
+                    <span class="logo-title"><i class="fa fa-heart"></i> Dance Academy</span>
+                </a>
+            </h1><!--//logo-->
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button><!--//nav-toggle-->
+                </div><!--//navbar-header-->
+                <div class="navbar-collapse collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#about">Sobre</a></li>
+                        <li class="nav-item"><a href="static/dash/login.html">Login</a></li>
+                        <li class="nav-item last"><a class="scrollto" href="#contact">Contato</a></li>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->
+        </div>
+    </header><!--//header-->
+
+    <!-- ******PROMO****** -->
+    <section id="promo" class="promo section offset-header">
+        <div class="container text-center">
+            <h2 class="title">Dance<span class="highlight">Academy</span></h2><img src="static/img/ds1.png" />
+            <p class="intro">Aprimorando sua administração</p>
+            <div class="btns">
+                <a class="btn btn-cta-secondary" href="http://themes.3rdwavemedia.com/" target="_blank">Faça um tour</a>
+                <a class="btn btn-cta-primary" href="http://themes.3rdwavemedia.com/website-templates/devaid-free-bootstrap-theme-developers/" target="_blank">Comece Agora</a>
+            </div>
+            <ul class="meta list-inline">
+                <li><a href="#" target="_blank">View on GitHub</a></li>
+                <li><a href="https://github.com/twbs/bootstrap" target="_blank">Full Documentation</a></li>
+            </ul><!--//meta-->
+        </div><!--//container-->
+        <div class="social-media">
+            <div class="social-media-inner container text-center">
+                <ul class="list-inline">
+                    <li class="twitter-follow"><a href="https://twitter.com/3rdwave_themes" class="twitter-follow-button" data-show-count="false">Follow @3rdwave_themes</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </li><!--//twitter-follow-->
+                    <li class="twitter-tweet">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="3rdwave_themes" data-hashtags="bootstrap">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </li><!--//twitter-tweet-->
+                    <li class="facebook-like">
+                         <div class="fb-like" data-href="http://themes.3rdwavemedia.com/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                    </li><!--//facebook-like-->
+                    <!--// Generate github buttons: https://github.com/mdo/github-buttons -->
+                    <li class="github-star"><iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+                    <li class="github-fork"><iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe></li>
+                    <!--//
+                    <li class="github-follow"><iframe src="http://ghbtns.com/github-btn.html?user=mdo&type=follow&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
+                    -->
+                </ul>
             </div>
         </div>
-        <br/>
+    </section><!--//promo-->
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="well">
-                    <h2>{% trans %}Create CRUD code on
-                        <a href="https://cloud.google.com/products/app-engine/">App Engine</a>{% endtrans %}
-                    </h2>
-                    <br/>
+    <!-- ******ABOUT****** -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="title text-center">O que é?</h2>
+            <p class="intro text-center">O Dance Academy é um site feito especialmente para academias de dança em geral. Seu objetivo é ajudar na administração, organização, e divulgação de sua academia.</p>
+            <div class="row">
+                <div class="item col-md-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Design simples</h3>
+                        <p>Feito com um design minimalista e auto explicativo tornando sua utilização simples aos usuários.</p>
+                    </div><!--//content-->
+                </div><!--//item-->
+                <div class="item col-md-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Qualidades</h3>
+                        <p>O site oferece a sua escola a oportunidade de gerenciar alunos, aulas, eventos e funcionários.</p>
+                    </div><!--//content-->
+                </div><!--//item-->
+                <div class="item col-md-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-line-chart"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Benefícios</h3>
+                        <p>Praticidade e agilidade, tudo em um lugar só. Necessitando apenas de conexão com internet.</p>
+                    </div><!--//content-->
+                </div><!--//item-->
+                <div class="clearfix visible-md"></div>
+                <div class="item col-md-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-thumbs-up"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">O que esperamos</h3>
+                        <p>Esperamos que ao utilizar nosso site, sua vida no trabalho seja mais prática e agradavél ao realizar a administração de sua academia de dança!</p>
+                    </div><!--//content-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//about-->
 
-                    <p>
-                        <a href="/courses" class="btn btn-primary"></i>{% trans %} Check Courses App
-                            Out{% endtrans %} &raquo;</a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well">
-                    <h2>{% trans %}Tekton is open source.{% endtrans %}</h2>
-                    <br/>
+    <!-- ******LOGIN****** -->
 
-                    <p>
-                        <a href="https://github.com/renzon/tekton-fullstack" class="btn btn-social btn-github"><i
-                                class="fa fa-github"></i>{% trans %}Check Git Hub Out{% endtrans %} &raquo;</a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-md-offset-3">
-                <iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLA05yVJtRWYRGIeBxag8uT-3ftcMVT5oF" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
+
+    <!-- ******CONTACT****** -->
+    <section id="contact" class="contact section has-pattern">
+        <div class="container">
+            <div class="contact-inner">
+                <h2 class="title  text-center">Contatos</h2>
+                <p class="intro  text-center">Esperamos que você se interesse em conhecer nosso site.</p>
+                <div class="author-message">
+                    <div class="profile">
+                        <img class="img-responsive" src="static/assets/images/ds2.jpg" alt="" />
+                    </div><!--//profile-->
+                    <div class="speech-bubble">
+                        <h3 class="sub-title">Para maiores informações?</h3>
+                        <p>Você pode entrar em contato através do twitter <a href="https://twitter.com/3rdwave_themes" target="_blank">@dance_academy</a>
+                        <p>Se preferir ainda você pode entrar em contato pelo celular e/ou whatsapp a seguir: (12)991883768 :)</p>
+                        <div class="source">
+                            <span class="name"><a href="https://twitter.com/3rdwave_themes" target="_blank">Carolina Galvão</a></span>
+                            <br />
+                        </div><!--//source-->
+                    </div><!--//speech-bubble-->
+                </div><!--//author-message-->
+                <div class="clearfix"></div>
+                <div class="info text-center">
+                    <h4 class="sub-title">Get Connected</h4>
+                    <ul class="social-icons list-inline">
+                        <li><a href="https://twitter.com/3rdwave_themes" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/3rdwavethemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/xiaoying"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="http://instagram.com/xyriley"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://dribbble.com/Xiaoying"><i class="fa fa-dribbble"></i></a></li>
+                        <li class="last"><a href="mailto: hello@3rdwavemedia.com"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div><!--//info-->
+            </div><!--//contact-inner-->
+        </div><!--//container-->
+    </section><!--//contact-->
+
+
 {% endblock %}
