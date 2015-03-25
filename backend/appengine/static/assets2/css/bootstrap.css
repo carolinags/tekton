@@ -5,10 +5,12 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+
 html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+    font-family: 'Ruda', sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;

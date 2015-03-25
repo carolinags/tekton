@@ -7,8 +7,10 @@
 */
 /* Default */
 /* ======= Base ======= */
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+
 body {
-  font-family: 'Lato', arial, sans-serif;
+  font-family: 'Ruda', sans-serif;
   color: #444444;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -41,7 +43,7 @@ a.btn {
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
-  font-family: 'Ruda', arial, sans-serif;
+  font-family: 'Ruda', sans-serif;
   padding: 8px 16px;
   font-weight: bold;
 }
@@ -107,6 +109,7 @@ pre code {
 }
 .header.navbar-fixed-top .logo a {
   color: #17baef;
+    text;
 }
 .header.navbar-fixed-top .main-nav .nav .nav-item a {
   color: #666666;
