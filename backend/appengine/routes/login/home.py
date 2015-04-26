@@ -13,7 +13,7 @@ from routes.login.passwordless import send_email
 @login_not_required
 @no_csrf
 def index(ret_path='/'):
-    g_path = router.to_path(google.index, ret_path=ret_path)
+    g_path = router.to_path(google.index, ret_path='/admin2')
     dct = {'login_google_path': users.create_login_url(g_path),
            'login_passwordless_path': router.to_path(send_email, ret_path=ret_path),
            'login_facebook_path': router.to_path(facebook.index, ret_path=ret_path),

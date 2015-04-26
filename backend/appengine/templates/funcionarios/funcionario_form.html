@@ -1,0 +1,29 @@
+{% extends 'funcionarios/funcionario_base.html' %}
+{% block body %}
+    {% set funcionario=funcionario or None %}
+    {% set errors=errors or None %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <br/>
+
+                <div class="well">
+                    <h1 class="text-center">{% trans %}Funcionario Form{% endtrans %}</h1>
+
+                    <form action="{{ save_path }}" method="post" role="form">
+                        {{ csrf_input() }}
+                        {{ form_input(_('Codigo'),'codigo',funcionario.codigo,errors.codigo) }}
+                        {{ form_input(_('Nome'),'nome',funcionario.nome,errors.nome) }}
+                        {{ form_input(_('Nascimento'),'nascimento',funcionario.nascimento,errors.nascimento) }}
+                        {{ form_input(_('Telefone'),'telefone',funcionario.telefone,errors.telefone) }}
+                        {{ form_input(_('Endereco'),'endereco',funcionario.endereco,errors.endereco) }}
+                        {{ form_input(_('Email'),'email',funcionario.email,errors.email) }}
+                        {{ form_input(_('Acesso'),'acesso',funcionario.acesso,errors.acesso) }}
+                       <button type="submit" class="btn btn-success"><a href="/funcionarios">{% trans %}Salvar{% endtrans %}</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

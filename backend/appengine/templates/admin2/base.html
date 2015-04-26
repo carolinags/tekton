@@ -4,11 +4,11 @@
 {% endmacro %}
 {% macro form_input(label,property,value,error_msg) %}
     <div class="form-group {{ ' has-error' if error_msg }}">
-        <label for="{{ property }}Input"
-               class="control-label">{{ label }} </label>
-        <input id="{{ property }}Input" type="text" class="form-control" name="{{ property }}"
-               value="{{ value }}"/>
-        {% if error_msg %}<span class="help-block">{{ error_msg }}</span>{% endif %}
+    <label for="{{ property }}Input"
+    class="control-label">{{ label }} </label>
+    <input id="{{ property }}Input" type="text" class="form-control" name="{{ property }}"
+    value="{{ value }}"/>
+    {% if error_msg %}<span class="help-block">{{ error_msg }}</span>{% endif %}
     </div>
 {% endmacro %}
 <html>
@@ -73,9 +73,31 @@
                 </ul>
                 <!--  notification end -->
             </div>
+
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="/">Logout</a></li>
+            	{% if _logged_user %}
+                    <div class="dropdown">
+                        <button style="margin-top: 15px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown">
+                        {{ _logged_user.name }}
+                        <span class="caret"></span>
+                        </button>
+                        <ul style="background: #ffd777" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/account">{% trans %}Conta{% endtrans %}</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                        <form action="{{ _logout_path }}" method="post" class="text-center">
+                        <button class="btn btn-danger" type="submit">{% trans %}
+                        Logout{% endtrans %}</button>
+                        {{ csrf_input() }}
+                        </form>
+                        </li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a class="btn btn-success" href="{{ _login_path }}">{% trans %}Login{% endtrans %}</a>
+                    {% endif %}
             	</ul>
             </div>
         </header>
@@ -93,21 +115,25 @@
               	  <p class="centered"><img src="../../static/img/ds1.png" class="img-circle" width="60"></p>
               	  <h5 class="centered">Your Name!</h5>
 
-                  <li class="mt">
-                      <a class="active" href="/admin2">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
-                          <span>Conta</span>
+                          <span>Gerenciamento</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin2/gerenciar">Gerenciar</a></li>
-                          <li><a  href="buttons.html">Busca</a></li>
+                      {% macro select_tab(tab='') %}
+                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIOS' }}><a href="/funcionarios">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
+                        </li>
+                        <li {{ 'class="active"' | safe if tab=='PESQUISAR' }}><a href="/admin2/gerenciar">{% trans %}Pesquisar{% endtrans %}</a>
+                        </li>
+                        {% if _logged_user and 'ADMIN' in _logged_user.groups %}
+                        <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
+                        </li>
+                        {% endif %}
+                        {% endmacro %}
+                        {% block tabs %}
+                        {{ select_tab() }}
+                        {% endblock %}
                       </ul>
                   </li>
 
@@ -117,9 +143,9 @@
                           <span>Configurações</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="calendar.html">Gerais</a></li>
-                          <li><a  href="gallery.html">Conta</a></li>
-                          <li><a  href="todo_list.html">Contato Administração</a></li>
+                          <li><a  href="/admin2/gerais">Gerais</a></li>
+                          <li><a  href="/admin2/conta">Conta</a></li>
+                          <li><a  href="/admin2/contatoAdm">Contato Administração</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -128,9 +154,9 @@
                           <span>Professor</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="blank.html">Turmas</a></li>
-                          <li><a  href="../login2/home.html">Monitoramento de aulas</a></li>
-                          <li><a  href="lock_screen.html">Controle de aulas</a></li>
+                          <li><a  href="/admin2/turmas">Turmas</a></li>
+                          <li><a  href="/admin2/monitoramento">Monitoramento de aulas</a></li>
+                          <li><a  href="/admin2/controle">Controle de aulas</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -139,10 +165,10 @@
                           <span>Material</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="form_component.html">Conteúdo programático</a></li>
-                          <li><a  href="calendar.html">Calendário da Escola</a></li>
-                          <li><a  href="calendar.html">Acesso a docs</a></li>
-                          <li><a  href="calendar.html">Links essenciais</a></li>
+                          <li><a  href="/admin2/conteudo">Conteúdo programático</a></li>
+                          <li><a  href="/admin2/calendario">Calendário da Escola</a></li>
+                          <li><a  href="/admin2/acesso">Acesso a docs</a></li>
+                          <li><a  href="/admin2/links">Links essenciais</a></li>
                       </ul>
                   </li>
 
@@ -159,18 +185,6 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content end-->
-      <div><! --/row -->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="/admin2" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-      </div><! --/row -->
 
 
     <!-- Javascript admin2 -->

@@ -1,16 +1,14 @@
 {% extends 'base/base.html' %}
-{% block css %}
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
-    <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
-{% endblock %}
+
 {% block js %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock %}
 {% block body %}
+<body style="background-color: #17BAEF">
     <div class="container">
         <br/>
 
-        <h1 class="text-center">{% trans %}Login Options{% endtrans %}</h1>
+        <h1 class="text-center" style="color: #eebf3f">{% trans %}Login <span style="color: #074f66">Opções</span>{% endtrans %}</h1>
         <br/>
         <br/>
         <br/>
@@ -55,6 +53,9 @@
         </div>
     </div>
     {# see https://developers.facebook.com/docs/facebook-login/login-flow-for-web/v2.0#}
+
+    </body>
+
     <script>
 
         var checkFacebookLogin = function () {
