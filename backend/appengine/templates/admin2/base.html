@@ -115,25 +115,18 @@
               	  <p class="centered"><img src="../../static/img/ds1.png" class="img-circle" width="60"></p>
               	  <h5 class="centered">Your Name!</h5>
 
+                  {% macro select_tab(tab='') %}
+
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
                           <span>Gerenciamento</span>
                       </a>
                       <ul class="sub">
-                      {% macro select_tab(tab='') %}
-                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIOS' }}><a href="/funcionarios">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
+                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIOS' }}><a href="/cadastro">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
                         </li>
                         <li {{ 'class="active"' | safe if tab=='PESQUISAR' }}><a href="/admin2/gerenciar">{% trans %}Pesquisar{% endtrans %}</a>
                         </li>
-                        {% if _logged_user and 'ADMIN' in _logged_user.groups %}
-                        <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
-                        </li>
-                        {% endif %}
-                        {% endmacro %}
-                        {% block tabs %}
-                        {{ select_tab() }}
-                        {% endblock %}
                       </ul>
                   </li>
 
@@ -143,9 +136,8 @@
                           <span>Configurações</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin2/gerais">Gerais</a></li>
-                          <li><a  href="/admin2/conta">Conta</a></li>
-                          <li><a  href="/admin2/contatoAdm">Contato Administração</a></li>
+                      <li {{ 'class="active"' | safe if tab=='CONTA' }}><a href="/account">{% trans %}Conta{% endtrans %}</a>
+                      </li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -172,6 +164,15 @@
                       </ul>
                   </li>
 
+                  {% if _logged_user and 'ADMIN' in _logged_user.groups %}
+                     <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
+                     </li>
+                  {% endif %}
+
+                  {% endmacro %}
+                  {% block tabs %}
+                  {{ select_tab() }}
+                  {% endblock %}
 
               </ul>
               <!-- sidebar menu end-->

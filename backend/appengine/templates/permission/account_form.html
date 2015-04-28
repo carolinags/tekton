@@ -1,15 +1,35 @@
-{% extends 'base/base.html' %}
+{% extends 'admin2/base.html' %}
 {% block body %}
     {% set user=user or None %}
     {% set errors=errors or None %}
+
+    <section id="main-content">
+    <section class="wrapper">
+
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-11">
                 <br/>
 
                 <div class="well">
-                    <h1 class="text-center">{% trans %}Your Account{% endtrans %}</h1>
 
+                    <h1 class="text-center">Sua Conta</h1>
+
+                    <div class="row">
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                          <a href=""><img src="static/img/6.jpg" alt="..."></a>
+                          <div class="caption text-center">
+                            <h3>Your Name!</h3>
+                            <p><a href="#" class="btn btn-primary" role="button">Mudar Imagem</a></p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    <div class="col-sm-6 col-md-8">
+                    <h1></h1>
                     <form action="{{ save_path }}" method="post" role="form">
                         {{ csrf_input() }}
                         {{ form_input(_('Name'),'name',user.name,errors.name) }}
@@ -33,10 +53,15 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">{% trans %}Save{% endtrans %}</button>
+                        <button type="submit" class="btn btn-success">{% trans %}Salvar{% endtrans %}</button>
                     </form>
+                    </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </section>
+    </section>
 {% endblock %}
