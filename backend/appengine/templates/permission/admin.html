@@ -1,4 +1,4 @@
-{% extends 'admin/base.html' %}
+{% extends 'admin2/base.html' %}
 {% block js %}
     <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
     <script type="text/javascript" src="/static/permission/js/permissions.js"></script>
@@ -35,9 +35,12 @@
     </script>
 {% endblock %}
 {% block body %}
+
+    <section id="main-content">
+    <section class="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-11">
                 <h1>{% trans %}Users Table{% endtrans %}</h1>
 
                 <div ng-app="app" ng-controller="AppCtrl">
@@ -52,4 +55,6 @@
             </div>
         </div>
     </div>
+    </section>
+    </section>
 {% endblock %}

@@ -1,5 +1,11 @@
-{% extends 'admin/base.html' %}
+{% extends 'admin2/base.html' %}
+{% block tabs %}
+    {{ select_tab('ADMIN') }}
+{% endblock %}
 {% block body %}
+
+    <section id="main-content">
+    <section class="wrapper">
     <div class="container">
         <div class="row">
             <h1>{% trans %}Administration Panel{% endtrans %}</h1>
@@ -16,4 +22,6 @@
             </ul>
         </div>
     </div>
+    </section>
+    </section>
 {% endblock %}
