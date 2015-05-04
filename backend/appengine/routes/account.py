@@ -16,7 +16,7 @@ def edit(_logged_user, name, user_locale, timezone):
     _logged_user.locale = user_locale
     _logged_user.timezone = timezone
     _logged_user.put()
-    return RedirectResponse('/')
+    return RedirectResponse('/admin2')
 
 
 @login_required

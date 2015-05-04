@@ -19,7 +19,6 @@ def index(_logged_user):
     usuario_arco = query.fetch()
     chaves_de_funcionarios = [arco.destination for arco in usuario_arco]
     funcionario_lista = ndb.get_multi(chaves_de_funcionarios)
-
     funcionario_form = FuncionarioFormTable()
     funcionario_lista = [funcionario_form.fill_with_model(funcionario) for funcionario in funcionario_lista]
     editar_form_path = router.to_path(editar_form)
@@ -27,7 +26,7 @@ def index(_logged_user):
     for funcionario in funcionario_lista:
         funcionario['edit_path'] = '%s/%s'%(editar_form_path, funcionario['id'])
         funcionario['delete_path'] = '%s/%s'%(delete_path, funcionario['id'])
-    ctx = {'funcionario_lista': funcionario_lista,
+    ctx = {'funcionarios_lista': funcionario_lista,
            'form_path': router.to_path(form)}
     return TemplateResponse(ctx)
 

@@ -100,6 +100,7 @@
                     {% endif %}
             	</ul>
             </div>
+
         </header>
       <!--header end-->
 
@@ -113,7 +114,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
 
               	  <p class="centered"><img src="../../static/img/ds1.png" class="img-circle" width="60"></p>
-              	  <h5 class="centered">Your Name!</h5>
+              	  <h5 class="centered">{{ _logged_user.name }}</h5>
 
                   {% macro select_tab(tab='') %}
 
