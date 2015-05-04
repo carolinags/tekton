@@ -30,7 +30,7 @@ def index(_logged_user):
            'form_path': router.to_path(form)}
     return TemplateResponse(ctx)
 
-
+@login_required
 @no_csrf
 def form():
     ctx = {'save_path': router.to_path(salvar)}
@@ -58,7 +58,7 @@ class FuncionarioForm(ModelForm):
     _model_class = Funcionario
     _include = [Funcionario.nome, Funcionario.email, Funcionario.telefone, Funcionario.nascimento, Funcionario.acesso]
 
-
+@login_required
 def salvar(_logged_user, **propriedades):
     func_form = FuncionarioForm(**propriedades)
     erros = func_form.validate()
@@ -76,7 +76,7 @@ def salvar(_logged_user, **propriedades):
          sleep(1)
          return RedirectResponse(router.to_path(index))
 
-
+@login_required
 @no_csrf
 def editar_form(funcionario_id):
     funcionario_id = int(funcionario_id)
@@ -87,7 +87,7 @@ def editar_form(funcionario_id):
            'funcionario': funcionario_form}
     return TemplateResponse(ctx,'cadastro/form.html')
 
-
+@login_required
 def editar(funcionario_id, **propriedades):
     funcionario_id = int(funcionario_id)
     funcionario = Funcionario.get_by_id(funcionario_id)
@@ -104,7 +104,7 @@ def editar(funcionario_id, **propriedades):
          sleep(1)
          return RedirectResponse(router.to_path(index))
 
-
+@login_required
 def delete(funcionario_id):
     chave = ndb.Key(Funcionario, int(funcionario_id))
     chave.delete()
