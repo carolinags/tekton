@@ -14,18 +14,21 @@ from tekton.gae.middleware.redirect import RedirectResponse
 @login_required
 @no_csrf
 def index(_logged_user):
-    chave_do_usuario = _logged_user.key
-    query = UsuarioArco.query(UsuarioArco.origin==chave_do_usuario)
-    usuario_arco = query.fetch()
-    chaves_de_funcionarios = [arco.destination for arco in usuario_arco]
-    funcionario_lista = ndb.get_multi(chaves_de_funcionarios)
-    funcionario_form = FuncionarioFormTable()
-    funcionario_lista = [funcionario_form.fill_with_model(funcionario) for funcionario in funcionario_lista]
-    editar_form_path = router.to_path(editar_form)
-    delete_path = router.to_path(delete)
-    for funcionario in funcionario_lista:
-        funcionario['edit_path'] = '%s/%s'%(editar_form_path, funcionario['id'])
-        funcionario['delete_path'] = '%s/%s'%(delete_path, funcionario['id'])
+    try:
+        chave_do_usuario = _logged_user.key
+        query = UsuarioArco.query(UsuarioArco.origin==chave_do_usuario)
+        usuario_arco = query.fetch()
+        chaves_de_funcionarios = [arco.destination for arco in usuario_arco]
+        funcionario_lista = ndb.get_multi(chaves_de_funcionarios)
+        funcionario_form = FuncionarioFormTable()
+        funcionario_lista = [funcionario_form.fill_with_model(funcionario) for funcionario in funcionario_lista]
+        editar_form_path = router.to_path(editar_form)
+        delete_path = router.to_path(delete)
+        for funcionario in funcionario_lista:
+            funcionario['edit_path'] = '%s/%s'%(editar_form_path, funcionario['id'])
+            funcionario['delete_path'] = '%s/%s'%(delete_path, funcionario['id'])
+    except:
+        pass
     ctx = {'funcionarios_lista': funcionario_lista,
            'form_path': router.to_path(form)}
     return TemplateResponse(ctx)
@@ -108,5 +111,8 @@ def editar(funcionario_id, **propriedades):
 def delete(funcionario_id):
     chave = ndb.Key(Funcionario, int(funcionario_id))
     chave.delete()
+    query = UsuarioArco.find_origins(chave)
+    chaves_dos_arcos = query.fetch(keys_only=True)
+    ndb.delete_multi(chaves_dos_arcos)
     sleep(1)
     return RedirectResponse(router.to_path(index))

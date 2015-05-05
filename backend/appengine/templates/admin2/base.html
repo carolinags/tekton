@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {% macro csrf_input() %}
     <input type="hidden" value="{{ _csrf_code }}" name="_csrf_code"/>
 {% endmacro %}
@@ -131,8 +132,6 @@
                       <ul class="sub">
                         <li {{ 'class="active"' | safe if tab=='FUNCIONARIOS' }}><a href="/cadastro">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
                         </li>
-                        <!--<li {{ 'class="active"' | safe if tab=='PESQUISAR' }}><a href="/admin2/gerenciar">{% trans %}Pesquisar{% endtrans %}</a>
-                        </li>-->
                       </ul>
                   </li>
 
@@ -175,13 +174,12 @@
                   </li>
 
                   {% if _logged_user and 'ADMIN' in _logged_user.groups %}
-
-                     <<li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
+                     <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
                      </li>
                   {% endif %}
                   {% endmacro %}
                   {% block tabs %}
-                  {{ select_tab()}}
+                  {{ select_tab() }}
                   {% endblock %}
 
               </ul>
@@ -254,5 +252,6 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
+</section>
 </body>
 </html>
