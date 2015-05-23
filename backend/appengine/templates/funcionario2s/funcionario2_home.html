@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
+<script type="text/javascript" src="/static/angular/js/angular.min.js" xmlns="http://www.w3.org/1999/html"></script>
     <script type="text/javascript" src="/static/funcionario/js/funcionario.js"></script>
     <script type="text/javascript">
 
@@ -76,6 +76,10 @@
 
                 <h1 class="text-center">Tabela Funcionários (Versão 2)</h1>
 
+                <button class="btn btn-primary" ng-click="toggleForm()"><i class="fa fa-plus-square-o"></i> Adicionar</button>
+                <br/>
+                <br/>
+
                 <funcionarioform ng-show="mostrarFormFlag" funcionario="funcionario" save-complete="adicionarFuncionario(funcionario)"></funcionarioform>
 
                 <table class="table table-responsive table-striped table-hover">
@@ -93,8 +97,6 @@
                     <tr funcionariolinha ng-repeat="func in funcionariolista" funcionario="func" delete-complete="removerFuncionario(funcionario)"></tr>
                     </tbody>
                 </table>
-
-                <button class="btn btn-primary" ng-click="toggleForm()"><i class="fa fa-plus-square-o"></i> Adicionar</button>
 
                 <div class="col col-md-offset-6" style="margin-top: 20px">
                             <img src="/static/img/ajax.gif" ng-show="listandoFlag"/>
