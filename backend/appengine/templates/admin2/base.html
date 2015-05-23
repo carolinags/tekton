@@ -89,13 +89,13 @@
                         {{ _logged_user.name }}
                         <span class="caret"></span>
                         </button>
-                        <ul style="background: #ffd777" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/account">{% trans %}Conta{% endtrans %}</a></li>
+                        <ul style="background: #ffd777; left: auto; right: 0%" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/account">Conta</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation">
                         <form action="{{ _logout_path }}" method="post" class="text-center">
-                        <button class="btn btn-danger" type="submit">{% trans %}
-                        Logout{% endtrans %}</button>
+                        <button class="btn btn-danger" type="submit">
+                        Logout</button>
                         {{ csrf_input() }}
                         </form>
                         </li>
@@ -119,7 +119,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-              	  <p class="centered"><img src="../../static/img/ds1.png" class="img-circle" width="60"></p>
+              	  <p class="centered"><img src="static/img/6.jpg" class="img-circle" width="100" height="100"></p>
               	  <h5 class="centered">{{ _logged_user.name }}</h5>
 
                   {% macro select_tab(tab='') %}
@@ -130,7 +130,9 @@
                           <span>Gerenciamento</span>
                       </a>
                       <ul class="sub">
-                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIOS' }}><a href="/cadastro">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
+                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIO' }}><a href="/cadastro">{% trans %}Gerenciar Funcionários{% endtrans %}</a>
+                        </li>
+                        <li {{ 'class="active"' | safe if tab=='FUNCIONARIO2' }}><a href="/funcionario2s">{% trans %}Gerenciar com Angular{% endtrans %}</a>
                         </li>
                       </ul>
                   </li>
@@ -174,9 +176,10 @@
                   </li>
 
                   {% if _logged_user and 'ADMIN' in _logged_user.groups %}
-                     <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">{% trans %}Admin{% endtrans %}</a>
+                     <li {{ 'class="active"' | safe if tab=='ADMIN' }}><a href="/admin">Admin</a>
                      </li>
                   {% endif %}
+
                   {% endmacro %}
                   {% block tabs %}
                   {{ select_tab() }}
@@ -218,40 +221,7 @@
     <script src="../../static/assets2/js/sparkline-chart.js"></script>
 	<script src="../../static/assets2/js/zabuto_calendar.js"></script>
 
-	<script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
 
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-
-
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-    </script>
 </section>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<tr>
+    <td>
+        <div class="col m6">
+        <button  ng-click="editar()" class="btn btn-success" ng-hide="ajaxFlag || editandoFlag"><i class="fa fa-edit"></i></button>
+        </div>
+        <div class="col m6">
+            <button ng-click="completarEdicao()" class="btn btn-success btn" ng-hide="ajaxFlag || !editandoFlag"><i class="fa fa-check"></i></button>
+        </div>
+        <div class="col m6">
+            <button ng-click="cancelar()" class="btn btn-success" ng-hide="ajaxFlag || !editandoFlag"><i class="fa fa-close"></i></button>
+        </div>
+            <img src="/static/img/ajax.gif" ng-show="ajaxFlag"/>
+    </td>
+    <td><span ng-hide="editandoFlag">{{ funcionario.nome }}</span> <input ng-show="editandoFlag" type="text" ng-model="funcionarioEdicao.nome"> </td>
+    <td><span ng-hide="editandoFlag">{{ funcionario.email }}</span> <input ng-show="editandoFlag" type="text" ng-model="funcionarioEdicao.email"></td>
+    <td><span ng-hide="editandoFlag">{{ funcionario.telefone }} </span><input ng-show="editandoFlag" type="text" ng-model="funcionarioEdicao.telefone"></td>
+    <td><span ng-hide="editandoFlag">{{ funcionario.nascimento }} </span><input ng-show="editandoFlag" type="text" ng-model="funcionarioEdicao.nascimento"></td>
+    <td><span ng-hide="editandoFlag">{{ funcionario.acesso }}</span>
+    <select ng-show="editandoFlag" type="text" ng-model="funcionarioEdicao.acesso">
+    <option>Administrador</option>
+    <option>Recepção</option>
+    <option>Professor</option>
+    <option>Monitoria</option>
+    <option>Funcionário Extra</option>
+    </select>
+    </td>
+    <td>
+        <button ng-click="deletar()" class="btn btn-danger" ng-hide="ajaxFlag"><i class="fa fa-trash-o"></i></button>
+        <img src="/static/img/ajax.gif" ng-show="ajaxFlag"/>
+    </td>

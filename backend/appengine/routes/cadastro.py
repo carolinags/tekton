@@ -10,7 +10,6 @@ from gaepermission.decorator import login_required
 from tekton import router
 from tekton.gae.middleware.redirect import RedirectResponse
 
-
 @login_required
 @no_csrf
 def index(_logged_user):
@@ -39,7 +38,7 @@ def form():
     ctx = {'save_path': router.to_path(salvar)}
     return TemplateResponse(ctx)
 
-
+@login_required
 class Funcionario(Node):
     nome = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
@@ -47,16 +46,17 @@ class Funcionario(Node):
     nascimento = ndb.DateProperty()
     acesso = ndb.StringProperty(required=True)
 
+@login_required
 class UsuarioArco(Arc):
     origin = ndb.KeyProperty(required=True)
     destination = ndb.KeyProperty(Funcionario,required=True)
 
-
+@login_required
 class FuncionarioFormTable(ModelForm):
     _model_class = Funcionario
     _include = [Funcionario.nome, Funcionario.email, Funcionario.telefone, Funcionario.nascimento, Funcionario.acesso]
 
-
+@login_required
 class FuncionarioForm(ModelForm):
     _model_class = Funcionario
     _include = [Funcionario.nome, Funcionario.email, Funcionario.telefone, Funcionario.nascimento, Funcionario.acesso]

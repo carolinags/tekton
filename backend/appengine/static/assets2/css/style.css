@@ -364,7 +364,7 @@ ul.sidebar-menu li a{
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #68dff0;
-    color: #000;
+    color:white;
     display: block;
 
     -webkit-transition: all 0.3s ease;
@@ -519,6 +519,16 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     padding: 10px;
     border-radius: 4px 4px 0px 0px;
     -webkit-border-radius: 4px 4px 0px 0px;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: white;
+    white-space: nowrap;
 }
 
 .dropdown-menu.extended li p.green {

@@ -1,4 +1,9 @@
 {% extends 'admin2/base.html' %}
+
+{% block tabs %}
+    {{ select_tab('CONTA') }}
+{% endblock %}
+
 {% block body %}
     {% set user=user or None %}
     {% set errors=errors or None %}

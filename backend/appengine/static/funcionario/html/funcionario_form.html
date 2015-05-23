@@ -1,0 +1,41 @@
+<div class="well">
+<h1 class="text-center">Funcionário</h1>
+    <div class="form-group" ng-class="{true:'', false:'has-error'}[errors.nome==null]">
+    <label for="nomeInput" class="control-label">Nome </label>
+    <input id="nomeInput" class="form-control" ng-model="funcionario.nome">
+    <span class="help-block" ng-show="errors.nome">{{ errors.nome }}</span>
+    </div>
+
+    <div class="form-group" ng-class="{true:'', false:'has-error'}[errors.email==null]">
+    <label for="emailInput" class="control-label">Email </label>
+    <input id="emailInput" class="form-control" ng-model="funcionario.email">
+    <span class="help-block" ng-show="errors.email">{{ errors.email }}</span>
+    </div>
+
+    <div class="form-group" ng-class="{true:'', false:'has-error'}[errors.telefone==null]">
+    <label for="telefoneInput" class="control-label">Telefone </label>
+    <input id="telefoneInput" class="form-control" ng-model="funcionario.telefone">
+    <span class="help-block" ng-show="errors.telefone">{{ errors.telefone }}</span>
+    </div>
+
+    <div class="form-group" ng-class="{true:'', false:'has-error'}[errors.nascimento==null]">
+    <label for="nascimentoInput" class="control-label">Nascimento </label>
+    <input id="nascimentoInput" class="form-control" ng-model="funcionario.nascimento">
+    <span class="help-block" ng-show="errors.nascimento">{{ errors.nascimento }}</span>
+    </div>
+
+    <div class="form-group" ng-class="{true:'', false:'has-error'}[errors.acesso==null]">
+    <label for="acessoInput" class="control-label">Acesso </label>
+    <select id="acessoInput" class="form-control" ng-model="funcionario.acesso">
+    <option>Administrador</option>
+    <option>Recepção</option>
+    <option>Professor</option>
+    <option>Monitoria</option>
+    <option>Funcionário Extra</option>
+    </select>
+    <span class="help-block" ng-show="errors.acesso">{{ errors.acesso }}</span>
+    </div>
+
+<button type="submit" class="btn btn-success" ng-click="salvar()" ng-hide="salvandoFlag">Salvar</button>
+<img src="/static/img/ajax.gif" ng-show="salvandoFlag"/>
+</div>

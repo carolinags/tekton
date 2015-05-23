@@ -1,0 +1,110 @@
+{% extends 'admin2/base.html' %}
+
+{% block tabs %}
+    {{ select_tab('FUNCIONARIO2') }}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/funcionario/js/funcionario.js"></script>
+    <script type="text/javascript">
+
+        var rest=angular.module('rest',[]);
+        rest.factory('FuncionarioApi',function($http){
+            return{
+                salvar: function(funcionario){
+                    return $http.post('{{ rest_new_path }}',funcionario);
+                },
+                listar:function(){
+                    return $http.post('{{ rest_list_path }}');
+                },
+                deletar:function(id) {
+                    return $http.post('{{ rest_delete_path }}', {id: id});
+                },
+                editar:function(funcionario){
+                    return $http.post('{{ rest_edit_path }}',{id:funcionario.id,nome:funcionario.nome,
+                        email:funcionario.email,telefone:funcionario.telefone,acesso:funcionario.acesso,
+                        nascimento:funcionario.nascimento});
+                }
+            };
+        });
+
+        var funcionarioApp=angular.module('funcionarioApp',['funcionarioModulo','rest']);
+        function FuncionarioController($scope, FuncionarioApi){
+            $scope.mostrarFormFlag=false;
+            $scope.funcionario={nome:'',
+                                email:'',
+                                telefone:'',
+                                nascimento:'',
+                                acesso:''};
+            $scope.funcionariolista=[];
+            $scope.listandoFlag=true;
+            FuncionarioApi.listar().success(function(funcionarios_lista){
+                $scope.funcionariolista = funcionarios_lista;
+            });
+            $scope.listandoFlag=false;
+            $scope.toggleForm=function(){
+                $scope.mostrarFormFlag=!$scope.mostrarFormFlag;
+            };
+            $scope.adicionarFuncionario=function(funcionario){
+                $scope.funcionariolista.unshift(funcionario);
+            };
+            $scope.removerFuncionario=function(funcionario){
+                var funcionariolista = $scope.funcionariolista;
+                for(var i = 0 ; i < funcionariolista.length;i+=1){
+                    if(funcionario.id==funcionariolista[i].id   ){
+                        funcionariolista.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            $scope.editarFuncionario=function(funcionario){
+            }
+        }
+    </script>
+{% endblock %}
+
+
+{% block body %}
+
+    <section id="main-content">
+    <section class="wrapper">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11" ng-app="funcionarioApp" ng-controller="FuncionarioController">
+
+                <h1 class="text-center">Tabela Funcionários (Versão 2)</h1>
+
+                <funcionarioform ng-show="mostrarFormFlag" funcionario="funcionario" save-complete="adicionarFuncionario(funcionario)"></funcionarioform>
+
+                <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th/>
+                        <th>{% trans %}Nome{% endtrans %}</th>
+                        <th>{% trans %}Email{% endtrans %}</th>
+                        <th>{% trans %}Telefone{% endtrans %}</th>
+                        <th>{% trans %}Nascimento{% endtrans %}</th>
+                        <th>{% trans %}Acesso{% endtrans %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr funcionariolinha ng-repeat="func in funcionariolista" funcionario="func" delete-complete="removerFuncionario(funcionario)"></tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-primary" ng-click="toggleForm()"><i class="fa fa-plus-square-o"></i> Adicionar</button>
+
+                <div class="col col-md-offset-6" style="margin-top: 20px">
+                            <img src="/static/img/ajax.gif" ng-show="listandoFlag"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+     </section>
+     </section>
+
+{% endblock %}
